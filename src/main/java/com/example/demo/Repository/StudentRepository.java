@@ -3,13 +3,13 @@ package com.example.demo.Repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.example.demo.entity.Student;
 
-@Repository
-public interface StudentRepository extends JpaRepository<Student,Long>{
+public interface StudentRepository extends JpaRepository<Student, Long> {
 
+    @Query("SELECT s FROM Student s WHERE s.name LIKE CONCAT('%', :name, '%')")
     public List<Student> findAllByName(String name);
-    
+
 }
